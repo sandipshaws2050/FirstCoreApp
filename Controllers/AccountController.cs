@@ -25,17 +25,18 @@ namespace FirstCoreApp.Controllers
         {
             if (ModelState.IsValid)
             {
-
-                if (model.City.ToString() == "0")
+               
+                if (Convert.ToInt32(model.City.ToString()) == 0)
                 {
+
+                    ModelState.AddModelError("", "Please Select City");
+                }
+                else {
+
+                    //TODO
 
                 }
 
-                else
-                {
-
-
-                }
             }
 
 
@@ -59,7 +60,7 @@ namespace FirstCoreApp.Controllers
             };
 
             //assigning SelectListItem to view Bag
-            cities.Insert(0, (new SelectListItem { Value = "0", Text = "Select City" }));
+            cities.Insert(0, (new SelectListItem { Text = "Select City", Value = "0" }));
             ViewBag.cities = cities;
 
 
