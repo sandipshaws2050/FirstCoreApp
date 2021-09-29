@@ -1,0 +1,131 @@
+﻿@model FirstCoreApp.Models.SignUpUserModel
+
+@{
+    ViewData["Title"] = "SignUpUser";
+}
+
+<h1>SignUpUser</h1>
+
+<h4>New User Registration Page</h4>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SignUpUser" asp-controller="Account" id="SignForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control"  autocomplete="off"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control"  autocomplete="off"/>
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="password"  autocomplete="off"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" type="password" autocomplete="off"/>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact" class="control-label"></label>
+                <input asp-for="Contact" class="form-control"  autocomplete="off"/>
+                <span asp-validation-for="Contact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Country</label>
+                <input asp-for="Country" class="form-control" autocomplete="off"/>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <select name="City" class="form-control" asp-items="@ViewBag.cities"></select>
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <table>
+
+                    <tr>
+                        <td><label class="control-label" Male> Select Gender</label></td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Male
+                            <input id="Gender" name="Gender" value="Male" type="radio">
+                            Female
+                            <input id="Gender" name="Gender" value="Female" type="radio">
+
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+
+                        </td>
+                    </tr>
+                </table>
+                
+
+                
+            </div>
+
+            <div class="form-group form-check">
+
+                <input class="form-check-input" asp-for="terms" type="checkbox">
+
+                <label class="form-check-label"> I Accept </label>
+
+
+
+
+                <span asp-validation-for="terms" class="text-danger"></span>
+
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script>
+
+    //jQuery.validator.unobtrusive.adapters.add("ValidateCheckbox", function (options) {
+
+    //    if (options.element.tagName.toUpperCase() != "INPUT" || options.element.type.toUpperCase() != "CHECKBOX") {
+    //        options.rule["required"] = true;
+    //        if (options.message) {
+    //            options.message["required"] = options.message;
+    //        }
+    //    }
+
+    //});
+
+    jQuery.validator.adapters.unobtrusive.add("ValidateCheckbox", function (options) {
+        // jQuery Validate equates "required" with "mandatory" for checkbox elements
+        if (options.element.tagName.toUpperCase() !== "INPUT" || options.element.type.toUpperCase() !== "CHECKBOX") {
+             options.rules["required"] = true;
+            if (options.message) {
+                options.messages["required"] = options.message;
+            }
+        }
+    });
+
+</script>
+

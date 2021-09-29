@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    int id = 4;
+}
+
+<h1>This is sam brigenza</h1>
+
+<h1>This is test proc</h1>
+
+<h4>Comments</h4>
+
+@await Component.InvokeAsync("Comment",new { id=id}) ;
